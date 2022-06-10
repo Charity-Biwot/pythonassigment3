@@ -10,6 +10,10 @@
 #             return f"Hello {self.name} your account number is {self.account_number} your deposit {self.deposit} and your withdrawal {self.withdraw} and your balance is {self.balance}"
 
 
+from itertools import count
+from selectors import SelectSelector
+
+
 class Account:
     def __init__(self,acc_number,name):
         self.balance = 0
@@ -17,6 +21,7 @@ class Account:
         self.acc_number =acc_number
         self.deposits=[]
         self.withdraws=[]
+        self_current =[]
     
     
 
@@ -30,6 +35,7 @@ class Account:
         
         
     def withdraw(self,amount):
+        count = 0
         if amount > self.balance:
          return f"Your balance is {self.balance} you cannot withdraw the {amount}"
     
@@ -38,23 +44,28 @@ class Account:
 
         else:
          self.balance -=amount
+         new_balance = self.balance-100
          self.withdraws.append(self.balance)
+         print(self.withdraws)
          return f"you have withdrawn {amount} your balance is {self.balance}"
      
-    def deposits_statement(self):
-         print(*self.deposits, sep="\n")
-         
-      
     def withdraws_statement(self):
-         print(*self.withdraws, sep="\n")
+         for i in self.withdraws:
+             print(f"you have withdrawn {i}")
+     
+    
+        
+         
+         
      
      #Add a new attribute to the class Account called deposits which by default is an empty list.
 #Add another attribute to the class Account called withdrawals which by default is an empty list.
 #Modify the deposit method to append each successful deposit to self.deposits
 #Modify the withdrawal method to append each successful withdrawal to self.withdrawals
 #Add a new method called deposits_statement which prints each deposit in a new line
-#dd a new method called withdrawals_statement which prints each withdrawal in a new line
 
+#Modify the withdrawal method to include a transaction fee of 100 per transaction.
+#Add a method to show the current balance
 
 
 
